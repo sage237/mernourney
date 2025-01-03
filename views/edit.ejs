@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   Edit for <%= hotel.title %> 
+   <form method="POST" action="/listings/<%=hotel._id%>?_method=PUT">
+
+    <input type="text" name="name" placeholder="Title" value="<%=hotel.title%>" >
+    <br><br>
+    <textarea name="desc" id=""><%=hotel.description%></textarea><br><br>
+    <input type="number" name="price" placeholder="Price" value="<%=hotel.price%>"><br><br>
+    <input type="text" name="image" placeholder="image" value="<%=hotel.imge%>"><br><br>
+    <input type="text" name="location" placeholder="Location" value="<%=hotel.location%>"><br><br>
+    <input type="text" name="country" placeholder="Country" value="<%=hotel.country%>"><br><br>
+    <button type="submit">submit</button>
+
+
+</form>
+</body>
+</html>

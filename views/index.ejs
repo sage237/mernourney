@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/listings/new">New Listing</a>
+   <ul>
+    <%for(hotel of hotels){%>
+        <li>
+           <a href="/listings/<%= hotel._id%>"><p><%= hotel.title%></p></a>
+        </li>
+        <%}%>
+   </ul>
+</body>
+</html>
