@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const listingSchema = new Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    imge: {
+    image: {
         type: String,
         default: "Default Link", //When image field is skipped;
         set: (v) => v === "" ? "Default link" : v //When Image field is defined but value is left as empty string
