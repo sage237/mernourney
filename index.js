@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const path = require('path');
-
+const ejsMate = require('ejs-mate');
 const listingModel = require('./models/listing');
 const { title } = require('process');
 const methodOverride = require('method-override');
@@ -10,13 +10,13 @@ const app = express();
 const port = 8080;
 
 app.use(express.urlencoded({ extended: true }));
-
 app.use(methodOverride("_method"));
-
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
+
+app.engine('ejs', ejsMate);
 
 app.listen(port, () => {
     console.log(`App is listeming on port ${port}`);
@@ -27,22 +27,11 @@ main().then(() => {
 }).catch((e) => {
     console.log('Exception while connnection to database: '.e);
 });
+
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/airbnbDB');
 }
 
-
-// app.get('/testListing', async (req, res) => {
-//     const listingInstance = new listingModel({
-//         title: 'Test Title',
-//         description: 'Test Description for test title',
-//         price: 200
-//     });
-
-//     const inst = await listingInstance.save();
-//     res.send(`Saved Successfully: ${inst}`);
-
-// });
 
 app.get("/", (req, res) => {
     res.status(200).send(
@@ -56,6 +45,7 @@ app.get('/listings', async (req, res) => {
 
     res.render('index', { hotels });
 });
+
 app.post('/listings', async (req, res) => {
     const data = req.body;
     console.log(`immage: ${data.image}`);
@@ -72,6 +62,7 @@ app.post('/listings', async (req, res) => {
     await listingOne.save()
     res.redirect('/listings');
 });
+
 app.get('/listings/new', (req, res) => {
     res.render('new');
 });
@@ -83,11 +74,13 @@ app.get('/listings/:id', async (req, res) => {
     console.log(`${id} Hotel ${hotel}`);
     res.render('details', { hotel });
 });
+
 app.delete('/listings/:id', async (req, res) => {
     console.log('Delete Called');
     await listingModel.findByIdAndDelete(req.params.id);
     res.redirect('/listings');
 });
+
 app.get('/listings/:id/edit', async (req, res) => {
 
     const { id } = req.params;
@@ -95,6 +88,7 @@ app.get('/listings/:id/edit', async (req, res) => {
     console.log(`${id} Hotel ${hotel}`);
     res.render('edit', { hotel });
 });
+
 app.put('/listings/:id', async (req, res) => {
     console.log('Edit Called');
     const data = req.body;
