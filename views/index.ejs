@@ -1,5 +1,21 @@
 <% layout('/layouts/boilerplate') -%>
-    <a href="/listings/new">New Listing</a>
-    <%for(hotel of hotels){%>
-        <a href="../listings/<%= hotel._id%>"> <img src="/<%=hotel.image%>" alt="<%= hotel.image%>"></a>
-        <%}%>
+
+<div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1"><%for(hotel of hotels){%>
+<a href="/listings/<%=hotel._id%>" class="listing-link">
+    <div class="card col" style="height: 18rem;width:18rem">
+        <img src="<%=hotel.image%>" class="card-img-top " alt="...">
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+          <p class="card-text"><b><%= hotel.title%></b><br/><%= hotel.description%><br/>&#8377; <%=hotel.price.toLocaleString("en-IN")%></p>
+        </div>
+      </div>
+</a>
+  <%}%></div>
+
+
+
+
+   
+
+
+            

@@ -1,0 +1,32 @@
+.navbar{
+    height: 4rem;
+}
+
+.row{
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+.card{
+    border:none !important;
+    margin-bottom:0.5rem ;
+}
+
+.card-img-top{
+    border-radius: .5rem !important;
+}
+.card-body{
+    padding: 0 !important;
+    padding-left: 1rem !important;
+}
+
+.listing-link{
+    text-decoration: none;
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: .4;
+    background-color: white;
+}
