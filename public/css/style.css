@@ -2,7 +2,7 @@
     height: 4rem;
 }
 
-.row{
+body{
     padding-left: 1rem;
     padding-top: 1rem;
 }
@@ -28,5 +28,8 @@
 }
 .card-img-overlay:hover{
     opacity: .4;
+    background-color: white;
+}
+#navbarNav{
     background-color: white;
 }
