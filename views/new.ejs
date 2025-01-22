@@ -8,35 +8,48 @@
                 
 <br/>
 <h3>New Listing</h3>
-                <form method="POST" action="/listings">
+                <form method="POST" action="/listings" class="needs-validation" novalidate>
 
                     <div class="mb-3"><label for="title" class="form-label">Title</label>
-                        <input id="title" type="text" name="name" placeholder="Title" class="form-control">
+                        <input id="title" type="text" name="name" placeholder="Title" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Title Should Not be EMPTY.
+                          </div>
                     </div>
 
                     <div class="mb-3"><label class="form-label" for="description">Description</label>
-                        <textarea class="form-control" id="description" name="desc" id="">Description</textarea>
-                    </div>
+                        <textarea class="form-control" id="description" name="desc"  required placeholder="Description"></textarea required>
+                            <div class="invalid-feedback">
+                                Required.
+                              </div></div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="price">Price</label>
-                        <input id="price" class="form-control" type="number" name="price" placeholder="Price">
-                    </div>
+                        <label class="form-label" for="price" >Price</label>
+                        <input id="price" class="form-control" type="number" name="price" placeholder="Price" required>
+                        <div class="invalid-feedback">
+                            Required!!
+                          </div></div>
                     <div class="mb-3"><label class="form-label" for="image">Image</label>
                         <input id="image" class="form-control" type="text" name="image" placeholder="image">
-                    </div>
+                        <div class="invalid-feedback">
+                            Required.
+                          </div> </div>
 
                     <div class="row">
 
                         <div class="mb-3 col-md-4">
                             <label class="form-label" for="location">Location</label><input class="form-control"
-                                id="location" type="text" name="location" placeholder="Location">
-
+                                id="location" type="text" name="location" placeholder="Location" required>
+                                <div class="invalid-feedback">
+                                    Required.
+                                  </div>
                         </div>
                         <div class="mb-3 col-md-8">
                             <label class="form-label" for="country">Country</label><input class="form-control"
-                                id="country" type="text" name="country" placeholder="Country">
-
+                                id="country" type="text" name="country" placeholder="Country" required>
+                                <div class="invalid-feedback">
+                                    Required.
+                                  </div>
                         </div>
                     </div>
 

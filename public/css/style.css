@@ -33,3 +33,10 @@ body{
 #navbarNav{
     background-color: white;
 }
+
+.btns{
+    display: flex !important;
+}
+.btns form{
+margin-left: 1rem ;
+}

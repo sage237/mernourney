@@ -5,36 +5,50 @@
 
 <br/>
         <h3>Edit  <%= hotel.title %></h3> 
-        <form method="POST" action="/listings/<%=hotel._id%>?_method=PUT">
+        <form method="POST" action="/listings/<%=hotel._id%>?_method=PUT" novalidate class="needs-validation">
      
      
      
          <div class="mb-3"><label for="title" class="form-label">Title</label>
-             <input id="title" type="text" name="name" placeholder="Title" class="form-control" value="<%=hotel.title%>">
+             <input id="title" type="text" name="name" placeholder="Title" class="form-control" value="<%=hotel.title%>" required>
+             <div class="invalid-feedback">
+                Required!
+              </div>
          </div>
      
          <div class="mb-3"><label class="form-label" for="description">Description</label>
-             <textarea class="form-control" id="description" name="desc" id=""><%=hotel.description%></textarea>
+             <textarea class="form-control" id="description" name="desc" id="" required><%=hotel.description%></textarea><div class="invalid-feedback">
+                Required!
+              </div>
          </div>
      
          <div class="mb-3">
              <label class="form-label" for="price">Price</label>
-             <input id="price" class="form-control" type="number" name="price" placeholder="Price" value="<%=hotel.price%>">
+             <input id="price" class="form-control" type="number" name="price" placeholder="Price" value="<%=hotel.price%>" required><div class="invalid-feedback">
+                Required!
+              </div>
          </div>
          <div class="mb-3"><label class="form-label" for="image">Image</label>
-             <input id="image" class="form-control" type="text" name="image" placeholder="image" value="<%=hotel.image%>">
+             <input id="image" class="form-control" type="text" name="image" placeholder="image" value="<%=hotel.image%>" required><div class="invalid-feedback">
+                Required!
+              </div>
          </div>
      
          <div class="row">
      
              <div class="mb-3 col-md-4">
                  <label class="form-label" for="location">Location</label><input class="form-control"
-                     id="location" type="text" name="location" placeholder="Location" value="<%=hotel.location%>" >
+                     id="location" type="text" name="location" placeholder="Location" value="<%=hotel.location%>" required><div class="invalid-feedback">
+                        Required!
+                      </div>
      
              </div>
              <div class="mb-3 col-md-8">
                  <label class="form-label" for="country">Country</label><input class="form-control"
-                     id="country" type="text" name="country" placeholder="Country" value="<%=hotel.country%>">
+                     id="country" type="text" name="country" placeholder="Country" value="<%=hotel.country%>" required>
+                     <div class="invalid-feedback">
+                        Required!
+                      </div>
      
              </div>
          </div>

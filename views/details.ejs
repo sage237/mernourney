@@ -1,16 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   Details for <%= hotel.title %> <br><br>
-   <a href="/listings/<%= hotel._id%>/edit"> Edit</a>
-   <form method="POST" action="/listings/<%= hotel._id%>?_method=DELETE">
-    
-    <button type="submit"> Delete</button>
-   </form>
-</body>
-</html>
+<%-layout("layouts/boilerplate")%>
+
+    <div class="row">
+        <div class="col-4 offset-2">
+            <h3 class="mb-3 mt-3">Listing Details</h3>
+            <img src="/<%=hotel.image%>" class="card-img-top col-2" alt="..." style="height: 18rem;">
+
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-2 offset-2">
+            <p>
+                <b><%= hotel.title %></b> <br>
+                <%= hotel.description %> <br>
+         <%= hotel.location %> <br>
+                <%= hotel.country %> <br>
+                &#8377; <%= hotel.title.toLocaleString("en-IN") %> <br>
+             </p>
+
+        </div>
+
+    </div>
+
+
+<div class="btns">
+    <a class="btn btn-primary btn-edit" href="/listings/<%= hotel._id%>/edit"> Edit</a>
+
+    <form " method="POST" action="/listings/<%= hotel._id%>?_method=DELETE">
+
+        <button class="btn btn-danger " type="submit"> Delete</button>
+    </form>
+</div>
+    </div>
