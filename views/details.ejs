@@ -29,9 +29,19 @@
 <div class="btns">
     <a class="btn btn-primary btn-edit" href="/listings/<%= hotel._id%>/edit"> Edit</a>
 
-    <form " method="POST" action="/listings/<%= hotel._id%>?_method=DELETE">
+    <form id="formAddUser" method="POST" action="/listings/<%= hotel._id%>?_method=DELETE">
 
-        <button class="btn btn-danger " type="submit"> Delete</button>
+        <button class="btn btn-danger " type="button" onclick="checker()"> Delete</button>
     </form>
 </div>
     </div>
+
+    <script>
+        function checker(){
+  if(window.confirm("Are you sure")){
+    document.getElementById("formAddUser").submit();
+  } else {
+    return;
+  }
+}
+    </script>
