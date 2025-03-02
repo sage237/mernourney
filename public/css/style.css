@@ -30,9 +30,7 @@ body{
     opacity: .4;
     background-color: white;
 }
-#navbarNav{
-    background-color: white;
-}
+
 
 .btns{
     display: flex !important;
