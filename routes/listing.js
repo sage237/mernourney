@@ -15,7 +15,7 @@ const validateSchema=( req,res,next)=>{
     else {next();}
 }
 
-router.get('/', wrapAsync(async (req, res) => {
+router.get('/', wrapAsync( async (req, res) => {
 
     const hotels = await listingModel.find();
 
