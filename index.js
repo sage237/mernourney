@@ -56,6 +56,11 @@ async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/airbnbDB');
 }
 
+app.use((req,res,next)=>{
+   res.locals.currUser= req.user;
+   next();
+});
+
 
 
 app.get("/", (req, res) => {
