@@ -24,18 +24,18 @@ router.get("/signup", (req, res) => {
 });
 
 
-router.post("/signup", validateSchema, wrapAsync(async (req, res,next) => {
+router.post("/signup", validateSchema, wrapAsync(async (req, res, next) => {
     const { email, username, password } = req.body;
     const user = new User({ username: username, email: email });
-  const registeredUser=  await User.register(user, password);
+    const registeredUser = await User.register(user, password);
 
-  req.login(registeredUser,(err)=>{
-    if(err){
-        next(err);
-    }res.redirect("/listings");
-  });
+    req.login(registeredUser, (err) => {
+        if (err) {
+            next(err);
+        } res.redirect("/listings");
+    });
 
-    
+
 
 }));
 
@@ -44,13 +44,14 @@ router.get("/login", (req, res) => {
 });
 
 
-router.post("/login",saveUrl, passport.authenticate("local"), wrapAsync(async (req, res) => {
+router.post("/login", saveUrl, passport.authenticate("local"), wrapAsync(async (req, res) => {
     // const { email, username, password } = req.body;
     // const user = new User({ username: username, email: email });
     // await User.register(user, password);
     console.log(req.originalUrl);
 
-    res.redirect(res.locals.redirectUrl);
+
+    res.redirect(res.locals.redirectUrl || "/listings"); ///Or condition checks if redirectUrl is empty (user as logged in from lisings page so isLoggedIn is not called so redirectUrl is undefined)
 
 }));
 router.get("/logout", (req, res, next) => {
