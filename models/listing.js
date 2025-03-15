@@ -9,8 +9,8 @@ const listingSchema = new Schema({
     description: { type: String, required: true },
     image: {
         type: String,
-        default: "Default Link", //When image field is skipped;
-        set: (v) => v === "" ? "Default link" : v //When Image field is defined but value is left as empty string
+        default: "download.jpeg", //When image field is skipped;
+        set: (v) => v === "" ? "download.jpeg" : v //When Image field is defined but value is left as empty string
 
     },
     price: { type: Number, required: true },
@@ -20,8 +20,13 @@ const listingSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Review'
-        }
-    ]
+        },
+       
+    ],
+    owner:{
+       type:Schema.Types.ObjectId    ,
+       ref:'User' 
+    }
 
 });
 listingSchema.post('findOneAndDelete',async(listinn)=>{
