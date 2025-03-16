@@ -77,15 +77,15 @@ app.use('/listings/:id/reviews',reviewRouter);
 app.use('/',userRouter);
 
 
-app.use((err, req, res, next) => {
-
-    let { statusCode=500, message="Something Went Wrong" } = err;
-    res.status(statusCode).send(message);
-});
 
 app.all("*", (req, res, next) => {
 
     const err = new ExpressError(404, 'Page Not Found!!');
 
     next(err);
+});
+app.use((err, req, res, next) => {
+
+    let { statusCode=500, message="Something Went Wrong" } = err;
+    res.status(statusCode).send(message);
 });

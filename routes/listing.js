@@ -6,8 +6,24 @@ const { joiSchema } = require("../joiSchema.js");
 const ExpressError = require('../utils/express_error.js');
 const { isLoggedIn } = require("../routes/middlewares/middleware.js");
 const listingController = require("../controllers/listing.js");
+const multer = require('multer');
+const upload=multer({dest:'public/images/',filename: (req, file, cb) => {
+         cb(null, Date.now() + '-' + file.originalname)}});
+
+
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads/'); // Save files in the 'uploads' directory
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, Date.now() + '-' + file.originalname); // Unique filename
+//     }
+// });
+// const upload = multer({ storage });
+
 
 const validateSchema = (req, res, next) => {
+    console.log(req);
     const result = joiSchema.validate(req.body);
     if (result.error) {
         throw new ExpressError(404, result.error);
@@ -17,7 +33,12 @@ const validateSchema = (req, res, next) => {
 
 router.route('/')
 .get( wrapAsync(listingController.getAllListings))
-.post( isLoggedIn, validateSchema, wrapAsync(listingController.addListings));
+.post( isLoggedIn,upload.single("image"), validateSchema,  wrapAsync(listingController.addListings))
+// .post(upload.single("image"),(req,res)=>{
+// console.log(req.file);
+// console.log(req.body);
+// })
+;
 
 router.get('/new', isLoggedIn, listingController.renderNewListingForm);
 

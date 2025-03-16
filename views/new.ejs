@@ -8,7 +8,7 @@
 
                 <br />
                 <h3>New Listing</h3>
-                <form method="POST" action="/listings" class="needs-validation" novalidate>
+                <form method="POST" action="/listings" class="needs-validation" novalidate enctype="multipart/form-data">
 
                     <div class="mb-3"><label for="title" class="form-label">Title</label>
                         <input id="title" type="text" name="name" placeholder="Title" class="form-control" required>
@@ -30,7 +30,7 @@
                             Required!!
                           </div></div>
                     <div class="mb-3"><label class="form-label" for="image">Image</label>
-                        <input id="image" class="form-control" type="text" name="image" placeholder="image">
+                        <input id="image" class="form-control" type="file" name="image" placeholder="image">
                         <div class="invalid-feedback">
                             Required.
                           </div> </div>

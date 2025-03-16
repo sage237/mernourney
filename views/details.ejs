@@ -71,9 +71,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">@<%= review.owner.username%></h5>
-                        <h3>Rated element name</h3>
-                        <p class="starability-result" data-rating="<%= review.rating%>">
-                          Rated: 3 stars
+                        
+                        <p class="starability-result card-text" data-rating="<%= review.rating%>">
+                          Rated: <%= review.rating%> stars
                         </p>
                         <p class="card-text"><%= review.comment%></p>
                         <%if(currUser&&currUser._id.equals(review.owner._id)) { %>

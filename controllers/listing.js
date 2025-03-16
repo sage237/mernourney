@@ -9,8 +9,9 @@ module.exports.getAllListings=async (req, res) => {
 
 module.exports.addListings=async (req, res) => {
 
-
+ console.log(`DataFile ${JSON.stringify(req.file)}`);
     const data = req.body;
+   
     if (!data) {
         throw new ExpressError(400, 'Data Are Required');
     }
@@ -20,7 +21,7 @@ module.exports.addListings=async (req, res) => {
             title: data.name,
             description: data.desc,
             price: data.price,
-            image: data.image,
+            image: `images/${req.file.filename}`,
             location: data.location,
             country: data.country,
             reviews: [],
