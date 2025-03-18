@@ -7,8 +7,24 @@ const ExpressError = require('../utils/express_error.js');
 const { isLoggedIn } = require("../routes/middlewares/middleware.js");
 const listingController = require("../controllers/listing.js");
 const multer = require('multer');
-const upload=multer({dest:'public/images/',filename: (req, file, cb) => {
-         cb(null, Date.now() + '-' + file.originalname)}});
+
+var path = require('path');
+const {storage}=require("../clloudConfig.js");
+
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'public/images/')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
+//   }
+// })
+
+var upload = multer({ storage: storage });
+
+
+// const upload=multer({dest:'public/images/',filename: (req, file, cb) => {
+//          cb(null, Date.now() + '-' + file.originalname)}});
 
 
 // const storage = multer.diskStorage({
@@ -33,7 +49,7 @@ const validateSchema = (req, res, next) => {
 
 router.route('/')
 .get( wrapAsync(listingController.getAllListings))
-.post( isLoggedIn,upload.single("image"), validateSchema,  wrapAsync(listingController.addListings))
+.post( isLoggedIn,upload.single("image"), (req,res)=>{res.send(req.file)})
 // .post(upload.single("image"),(req,res)=>{
 // console.log(req.file);
 // console.log(req.body);
