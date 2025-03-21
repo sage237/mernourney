@@ -5,7 +5,7 @@
 
 <br/>
         <h3>Edit  <%= hotel.title %></h3> 
-        <form method="POST" action="/listings/<%=hotel._id%>?_method=PUT" novalidate class="needs-validation">
+        <form method="POST" action="/listings/<%=hotel._id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
      
      
      
@@ -28,11 +28,15 @@
                 Required!
               </div>
          </div>
-         <div class="mb-3"><label class="form-label" for="image">Image</label>
-             <input id="image" class="form-control" type="text" name="image" placeholder="image" value="<%=hotel.image%>" required><div class="invalid-feedback">
-                Required!
-              </div>
+         <div class="mb-3">
+          Original Image
+          <img src="<%=image%>" alt="">
          </div>
+         <div class="mb-3"><label class="form-label" for="image">Image</label>
+          <input id="image" class="form-control" type="file" name="image" placeholder="image">
+          <div class="invalid-feedback">
+              Required.
+            </div> </div>
      
          <div class="row">
      

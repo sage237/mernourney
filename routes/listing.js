@@ -39,8 +39,12 @@ var upload = multer({ storage: storage });
 
 
 const validateSchema = (req, res, next) => {
-    console.log(req);
-    const result = joiSchema.validate(req.body);
+   
+    let body=req.body;
+  
+    if(typeof req.file!=='undefined')
+   { body.image=req.file.path;}
+    const result = joiSchema.validate(body);
     if (result.error) {
         throw new ExpressError(404, result.error);
     }
@@ -49,7 +53,7 @@ const validateSchema = (req, res, next) => {
 
 router.route('/')
 .get( wrapAsync(listingController.getAllListings))
-.post( isLoggedIn,upload.single("image"), (req,res)=>{res.send(req.file)})
+.post( isLoggedIn,upload.single("image"),validateSchema,  wrapAsync(listingController.addListings))
 // .post(upload.single("image"),(req,res)=>{
 // console.log(req.file);
 // console.log(req.body);
@@ -61,7 +65,7 @@ router.get('/new', isLoggedIn, listingController.renderNewListingForm);
 router.route('/:id')
 .get( wrapAsync(listingController.renderDetailPage))
 .delete( isLoggedIn, wrapAsync(listingController.deleteListing))
-.put( isLoggedIn, validateSchema, wrapAsync(listingController.editListings));
+.put( isLoggedIn,upload.single("image"), validateSchema, (listingController.editListings));
 
 router.get('/:id/edit', isLoggedIn, wrapAsync(listingController.renderEditForm));
 
